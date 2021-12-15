@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  public selectedProviders = [];
+  public selectedProviders = []
   public unselectedProviders = [
     {
       id: '1',
@@ -31,6 +31,39 @@ export class ListComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(localStorage.getItem("selectedProviders") === null){
+      localStorage.setItem("selectedProviders", JSON.stringify(this.selectedProviders))
+    }else{
+      this.selectedProviders = JSON.parse(localStorage.selectedProviders)
+    }
+    if(localStorage.getItem("unselectedProviders") === null){
+      localStorage.setItem("unselectedProviders", JSON.stringify(this.unselectedProviders))
+    }else{
+      this.unselectedProviders = JSON.parse(localStorage.unselectedProviders)
+    }
+    
+  }
+
+  selectProvider(selectedProvider: any){
+    this.selectedProviders.push(selectedProvider)
+    let removeIndex = this.unselectedProviders.indexOf(selectedProvider)
+    this.unselectedProviders.splice(removeIndex, 1)
+    this.saveProviderLists()
+    
+  }
+
+  removeProvider(selectedProvider: any){
+    this.unselectedProviders.push(selectedProvider)
+    let removeIndex = this.selectedProviders.indexOf(selectedProvider)
+    this.selectedProviders.splice(removeIndex, 1)
+    this.saveProviderLists()
+    
+  }
+
+  saveProviderLists(){
+    localStorage.setItem("selectedProviders", JSON.stringify(this.selectedProviders))
+    localStorage.setItem("unselectedProviders", JSON.stringify(this.unselectedProviders))
+  }
 
 }

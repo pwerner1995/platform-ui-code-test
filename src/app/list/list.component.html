@@ -1,4 +1,19 @@
 <div class="list-container">
-  <h2>Providers</h2>
+
+  <h2>Favorite Providers</h2>
+  <div style="margin-top: 15px;" *ngFor="let selectedProvider of selectedProviders">
+    <a 
+    style="margin-right: 15px;">
+    {{selectedProvider.name}}</a>
+    <button type="button" (click)="removeProvider(selectedProvider)">X</button>
+  </div>
+
+  <h2>Available Providers</h2>
+  <div class="provider-card" style="margin-top: 15px;" *ngFor="let unselectedProvider of unselectedProviders">
+    <a 
+    style="margin-right: 15px;">
+    {{unselectedProvider.name}}</a> 
+    <button type="button" (click)="selectProvider(unselectedProvider)"> Select </button>
+  </div>
 
 </div>
