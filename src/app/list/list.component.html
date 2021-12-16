@@ -2,17 +2,13 @@
 
   <h2>Favorite Providers</h2>
   <div class="provider-box" *ngFor="let selectedProvider of selectedProviders">
-    <a 
-    >
-    {{selectedProvider.name}}</a>
+    <a>{{selectedProvider.name}}</a>
     <button type="button" (click)="removeProvider(selectedProvider)">X</button>
   </div>
 
   <h2>Available Providers</h2>
   <div class="provider-box" *ngFor="let unselectedProvider of unselectedProviders">
-    <a 
-    >
-    {{unselectedProvider.name}}</a> 
+    <a>{{unselectedProvider.name}}</a> 
     <button type="button" (click)="selectProvider(unselectedProvider)"> Select </button>
   </div>
 
